@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button, Container, Menu } from 'semantic-ui-react';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { Button, Container, Menu } from 'semantic-ui-react'
 
 export default function NavBar() {
     return (
@@ -11,6 +11,7 @@ export default function NavBar() {
                     ReactNetCoreTutorial
                 </Menu.Item>
                 <Menu.Item as={NavLink} to='/activities' name='Activities' />
+                <Menu.Item as={NavLink} to='/errors' name='Errors' />
                 <Menu.Item>
                     <Button as={NavLink} to='/createActivity' positive content='Create Activity' />
                 </Menu.Item>

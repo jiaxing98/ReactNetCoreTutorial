@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Core;
+using Domain;
+using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -28,6 +30,12 @@ namespace NetCoreAPI.Extensions
 
             services.AddMediatR(typeof(ListOfActivities).Assembly);
             services.AddAutoMapper(typeof(MappingConfig).Assembly);
+
+            return services;
+        }
+
+        public static IServiceCollection AddValidatorService(this IServiceCollection services) {
+            services.AddValidatorsFromAssemblyContaining(typeof(Create.CommandValidator));
 
             return services;
         }

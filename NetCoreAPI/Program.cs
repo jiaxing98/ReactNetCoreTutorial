@@ -3,6 +3,7 @@ using Application.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NetCoreAPI.Extensions;
+using NetCoreAPI.Middleware;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationService(builder.Configuration);
+builder.Services.AddValidatorService();
 
 var app = builder.Build();
 
@@ -30,6 +32,8 @@ catch (Exception ex)
     var logger = services.GetRequiredService<ILogger<Program>>();
     logger.LogError(ex, "An error occurred during migration");
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
